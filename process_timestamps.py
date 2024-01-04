@@ -12,7 +12,7 @@ def parse_line(line):
 
 
 def analyze_data(input_file, output_file):
-    start_times = {}
+    # start_times = {}
     with open(input_file, 'r') as infile:
         lines = infile.readlines()
 
@@ -74,8 +74,8 @@ def analyze_data(input_file, output_file):
 if __name__ == "__main__":
     root_folder = os.path.dirname(os.path.abspath(__file__))
     input_file_path = os.path.join(
-        root_folder, 'timestamp _files', '2022-07-22_002_lsl.tri')
+        root_folder, 'timestamp _files', '2022-07-26_001_lsl.tri')
     output_file_path = os.path.join(
-        root_folder, '2022-07-22_002_output.csv')
+        root_folder, '2022-07-26_001_output.csv')
 
     analyze_data(input_file_path, output_file_path)
