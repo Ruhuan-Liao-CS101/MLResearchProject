@@ -45,8 +45,8 @@ def compare_counts(file1_path, file2_path, column_name1, column_name2):
 
 
 # File path
-file1_path = 'qmeanCEnew(HRVar)/qmeanCEnew(HRVar)001.csv'
-file2_path = 'processed_timestamp_files/2022-07-26_001_output.csv'
+file1_path = 'qmeanCEnew(HRVar)/qmeanCEnew(HRVar)007.csv'
+file2_path = 'processed_timestamp_files/007.csv'
 
 # Column names
 file1_column = 'Question Number'
