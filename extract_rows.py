@@ -1,11 +1,11 @@
 import pandas as pd
 
 # Read timestamp file
-timestamp_df = pd.read_csv('processed_timestamp_files/002.csv')
+timestamp_df = pd.read_csv('processed_timestamp_files/018.csv')
 
-# Read data file (assuming it is a CSV with the first column representing time in seconds)
+# Read data file (a CSV with the first column representing time in seconds)
 data_df = pd.read_csv(
-    'merged_time_data_files/merged_file_002.csv', header=None)
+    'merged_time_data_files/merged_file_018.csv', header=None)
 
 # Create an empty list to store the chunks of data
 output_data = []
@@ -42,6 +42,6 @@ for index, row in timestamp_df.iterrows():
         })
 
 # Write the output to a CSV file
-with open('splitted_data_002.csv', 'w') as f:
+with open('splitted_data_018.csv', 'w') as f:
     for entry in output_data:
         f.write(f"{entry['Time Range']}\n{entry['Data']}\n\n")
