@@ -1,11 +1,12 @@
 import pandas as pd
+import numpy as np
 
 # Read timestamp file
-timestamp_df = pd.read_csv('processed_timestamp_files/006.csv')
+timestamp_df = pd.read_csv('processed_timestamp_files/001.csv')
 
 # Read data file (a CSV with the first column representing time in seconds)
 data_df = pd.read_csv(
-    'merged_time_data_files/merged_file_006.csv', header=None)
+    'merged_time_data_files/merged_file_001.csv', header=None)
 
 # Create an empty list to store the chunks of data
 output_data = []
@@ -41,7 +42,18 @@ for index, row in timestamp_df.iterrows():
             'Data': extracted_data
         })
 
-# Write the output to a CSV file
-with open('splitted_data_006.csv', 'w') as f:
-    for entry in output_data:
-        f.write(f"{entry['Time Range']}\n{entry['Data']}\n\n")
+# # Write the output to a CSV file
+# with open('splitted_data_001.csv', 'w') as f:
+#     for entry in output_data:
+#         f.write(f"{entry['Time Range']}\n{entry['Data']}\n\n")
+
+# Convert the list of dictionaries to a NumPy object array
+output_array = np.empty(len(output_data), dtype=object)
+output_array[:] = output_data
+
+# Accessing data from the NumPy object array
+# Access the first 5 rows of the first entry's data and print each row
+specified_rows_data = output_array[2]['Data'][:5]
+
+for row in specified_rows_data:
+    print(row, "\n")
