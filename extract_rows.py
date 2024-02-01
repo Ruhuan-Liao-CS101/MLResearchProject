@@ -2,11 +2,11 @@ import pandas as pd
 import numpy as np
 
 # Read timestamp file
-timestamp_df = pd.read_csv('processed_timestamp_files/001.csv')
+timestamp_df = pd.read_csv('processed_timestamp_files/018.csv')
 
 # Read data file (a CSV with the first column representing time in seconds)
 data_df = pd.read_csv(
-    'merged_time_data_files/merged_file_001.csv', header=None)
+    'oxydeoxy_DataColumnsWithTime/018data.csv', header=None)
 
 # Create an empty list to store the chunks of data
 output_data = []
@@ -33,27 +33,58 @@ for index, row in timestamp_df.iterrows():
         extracted_data = data_df.iloc[start_pointer:end_pointer +
                                       1].values.tolist()
 
+        # # Get the number of columns in the chunk of data
+        # column_count = len(extracted_data[0])
+
         # Update pointers for the next iteration
         start_pointer = end_pointer + 1
 
         # Append time range, duration, and data to the list
         output_data.append({
             'Time Range': f'{start_time} to {end_time}, Duration {duration}',
+            # 'Column Count': column_count,
             'Data': extracted_data
         })
 
-# # Write the output to a CSV file
-# with open('splitted_data_001.csv', 'w') as f:
-#     for entry in output_data:
-#         f.write(f"{entry['Time Range']}\n{entry['Data']}\n\n")
+# Write the output to a CSV file
+with open('splitted_data_001.csv', 'w') as f:
+    for entry in output_data:
+        f.write(f"{entry['Time Range']}\n{entry['Data']}\n\n")
 
+'''
 # Convert the list of dictionaries to a NumPy object array
 output_array = np.empty(len(output_data), dtype=object)
 output_array[:] = output_data
+'''
 
+'''
+# Calculate the mean of each column in each entry
+for entry in output_array:
+    data_array = np.array(entry['Data'])
+    # Add keepdims=True
+    mean_values = np.mean(data_array[:, 1:], axis=0, keepdims=True)
+
+    # Get the size of mean_values
+    mean_values_size = mean_values.shape
+
+    # print(f"Time Range: {entry['Time Range']}")
+    # print("Mean Values:")
+    # print(mean_values)
+    # print(f"Size of mean_values: {mean_values_size}")
+    # print()
+
+    # Write the output to a CSV file
+with open('018meanValues.csv', 'w') as f:
+    for entry in output_array:
+        f.write(f"{entry['Time Range']}\n{mean_values}\n\n")
+'''
+
+'''
 # Accessing data from the NumPy object array
 # Access the first 5 rows of the first entry's data and print each row
-specified_rows_data = output_array[2]['Data'][:5]
+specified_rows_data = output_array[0]['Data'][:5]
+
 
 for row in specified_rows_data:
     print(row, "\n")
+'''
