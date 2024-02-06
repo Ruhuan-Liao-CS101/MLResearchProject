@@ -3,16 +3,16 @@ import numpy as np
 import csv
 
 # Read timestamp file
-timestamp_df = pd.read_csv('processed_timestamp_files/003.csv')
+timestamp_df = pd.read_csv('processed_timestamp_files/018.csv')
 
 # Read data file (a CSV with the first column representing time in seconds)
-data_df = pd.read_csv('oxydeoxy_DataColumnsWithTime/003data.csv', header=None)
+data_df = pd.read_csv('oxydeoxy_DataColumnsWithTime/018data.csv', header=None)
 
 # Create an empty list to store the chunks of data
 output_data = []
 
 # Calculate the end pointer based on the provided time gap
-provided_time = 322  # time difference in seconds
+provided_time = 22  # time difference in seconds
 last_row = data_df.shape[0]
 end_pointer = last_row - provided_time * 4
 
@@ -51,7 +51,7 @@ for index, row in timestamp_df.iloc[::-1].iterrows():
         end_pointer = start_pointer - 1
 
 # Write the output to a CSV file
-with open('Reverse_split_003.csv', 'w') as f:
+with open('Reverse_split_018.csv', 'w') as f:
     writer = csv.writer(f)
     # Write headers
     writer.writerow(['Time Range', 'Data'])
@@ -73,7 +73,7 @@ output_array[:] = output_data
 # for row in specified_rows_data:
 #     print(row, "\n")
 
-filename = 'meanValues_003.csv'
+filename = 'meanValues_018.csv'
 
 # Open the file in write mode
 with open(filename, 'w', newline='') as f:
