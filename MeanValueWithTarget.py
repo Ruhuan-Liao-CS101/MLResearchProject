@@ -1,10 +1,10 @@
 import pandas as pd
 
 # Load the first dataset
-data1 = pd.read_csv('mean_values_only/meanValues_002.csv', header=None)
+data1 = pd.read_csv('mean_values_only/meanValues_001.csv', header=None)
 
 # Load the second dataset
-data2 = pd.read_csv('qmeanCEnew(HRVar)/qmeanCEnew(HRVar)002.csv')
+data2 = pd.read_csv('qmeanCEnew(HRVar)/qmeanCEnew(HRVar)003.csv')
 
 # Filter out rows with null values in 'Question Number' and 'Accept_Deny_button.response' columns from the second dataset
 filtered_data2 = data2.dropna(
@@ -20,5 +20,5 @@ accept_deny_response = filtered_data2['Accept_Deny_button.response']
 data1['Accept_Deny_button.response'] = accept_deny_response
 
 # Save the merged dataset
-data1.to_csv('analysis_dataset_002.csv', index=False,
+data1.to_csv('analysis_data_003.csv', index=False,
              header=False)  # No need to include headers
