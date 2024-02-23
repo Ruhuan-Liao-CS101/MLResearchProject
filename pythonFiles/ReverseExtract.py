@@ -1,14 +1,14 @@
 import pandas as pd
 import numpy as np
 # from scipy.stats import skew
-# from scipy.stats import kurtosis
+from scipy.stats import kurtosis
 import csv
 
 # Read timestamp file
-timestamp_df = pd.read_csv('processed_timestamp_files/018.csv')
+timestamp_df = pd.read_csv('processed_timestamp_files/002.csv')
 
 # Read data file (a CSV with the first column representing time in seconds)
-data_df = pd.read_csv('oxydeoxy_DataColumns/018data.csv', header=None)
+data_df = pd.read_csv('oxydeoxy_DataColumns/002data.csv', header=None)
 
 # Create an empty list to store the chunks of data
 output_data = []
@@ -34,7 +34,7 @@ output_data = []
 '''
 
 # Calculate the end pointer based on the provided time gap for 0th position
-provided_time = 150  # time difference in seconds
+provided_time = 323  # time difference in seconds
 last_row = data_df.shape[0]
 end_pointer = last_row - provided_time * 4
 
@@ -95,7 +95,7 @@ output_array[:] = output_data
 # for row in specified_rows_data:
 #     print(row, "\n")
 
-filename = 'stdValues_split_018.csv'
+filename = 'kurtosis_labeled_002.csv'
 # Open the file in write mode
 with open(filename, 'w', newline='') as f:
     writer = csv.writer(f)
@@ -103,23 +103,28 @@ with open(filename, 'w', newline='') as f:
     # Iterate through each entry in the output array
     for entry in output_array:
         data_array = np.array(entry['Data'])
-        # mean_values = np.mean(data_array[:, 1:], axis=0, keepdims=True)
-        std_values = np.std(data_array[:, 1:], axis=0, keepdims=True, ddof=1)
+        # mean = np.mean(data_array[:, 1:], axis=0, keepdims=True)
+        # std = np.std(data_array[:, 1:], axis=0, keepdims=True, ddof=1)
+        kurtosis_values = kurtosis(
+            data_array[:, 1:], axis=0, fisher=False, bias=False, keepdims=True)
+        kurtosis_values -= 3
+
         # mean_values_size = mean_values.shape
-        std_values_size = std_values.shape
+        # std_values_size = std_values.shape
+        kur_value_size = kurtosis_values.shape
 
         # Write the time range and mean values to the CSV file
         writer.writerow([f"Time Range: {entry['Time Range']}"])
-        writer.writerow(["Std Values:"])
+        writer.writerow(["kurtosis Values:"])
         # writer.writerows(mean_values)
-        writer.writerows(std_values)
+        writer.writerows(kurtosis_values)
         # writer.writerow([f"Size of mean_values: {mean_values_size}"])
-        writer.writerow([f"Size of std_values: {std_values_size}"])
+        writer.writerow([f"Size of std_values: {kur_value_size}"])
         writer.writerow([])  # Add an empty row for better readability
 
 
 # File contain only mean values
-filename = 'stdValues_018.csv'
+filename = 'kurtosis_Values_002.csv'
 # Open the file in write mode
 with open(filename, 'w', newline='') as f:
     writer = csv.writer(f)
@@ -127,9 +132,11 @@ with open(filename, 'w', newline='') as f:
     # Iterate through each entry in the output array
     for entry in output_array:
         data_array = np.array(entry['Data'])
-        # mean_values = np.mean(data_array[:, 1:], axis=0, keepdims=True)
-        std_values = np.std(data_array[:, 1:], axis=0, keepdims=True, ddof=1)
+        # mean = np.mean(data_array[:, 1:], axis=0, keepdims=True)
+        # std = np.std(data_array[:, 1:], axis=0, keepdims=True, ddof=1)
         # variance_values = np.var(data_array[:, 1:], axis=0, keepdims=True)
         # skewness_values = skew(data_array[:, 1:], axis=0)
-        # kurtosis_values = kurtosis(data_array[:, 1:], axis=0)
-        writer.writerows(std_values)
+        kurtosis_values = kurtosis(
+            data_array[:, 1:], axis=0, fisher=False, bias=False, keepdims=True)
+        kurtosis_values -= 3
+        writer.writerows(kurtosis_values)
