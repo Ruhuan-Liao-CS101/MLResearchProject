@@ -5,10 +5,10 @@ from scipy.stats import kurtosis
 import csv
 
 # Read timestamp file
-timestamp_df = pd.read_csv('processed_timestamp_files/002.csv')
+timestamp_df = pd.read_csv('processed_timestamp_files/018.csv')
 
 # Read data file (a CSV with the first column representing time in seconds)
-data_df = pd.read_csv('oxydeoxy_DataColumns/002data.csv', header=None)
+data_df = pd.read_csv('oxydeoxy_DataColumns/018data.csv', header=None)
 
 # Create an empty list to store the chunks of data
 output_data = []
@@ -34,7 +34,7 @@ output_data = []
 '''
 
 # Calculate the end pointer based on the provided time gap for 0th position
-provided_time = 323  # time difference in seconds
+provided_time = 150  # time difference in seconds
 last_row = data_df.shape[0]
 end_pointer = last_row - provided_time * 4
 
@@ -95,7 +95,7 @@ output_array[:] = output_data
 # for row in specified_rows_data:
 #     print(row, "\n")
 
-filename = 'kurtosis_labeled_002.csv'
+filename = 'kurtosis_labeled_018.csv'
 # Open the file in write mode
 with open(filename, 'w', newline='') as f:
     writer = csv.writer(f)
@@ -124,7 +124,7 @@ with open(filename, 'w', newline='') as f:
 
 
 # File contain only mean values
-filename = 'kurtosis_Values_002.csv'
+filename = 'kurtosis_Values_018.csv'
 # Open the file in write mode
 with open(filename, 'w', newline='') as f:
     writer = csv.writer(f)

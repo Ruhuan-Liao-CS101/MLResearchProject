@@ -2,7 +2,7 @@ import pandas as pd
 
 # Read the data file into a DataFrame without a header
 data_df = pd.read_csv(
-    'combined_data_files/combined_mean_withLabels.csv', header=None)
+    'combined_data_files/mean_std_kurtosis_labels.csv', header=None)
 
 # Read the timestamp file into a DataFrame with a header
 # Assumes header is in the first row
@@ -17,4 +17,5 @@ data_df.insert(loc=0, value=timestamps, column=None)
 
 # Write the modified DataFrame back to a new file
 # Ensure no header is written
-data_df.to_csv('timestamp_mean_labels.csv', index=False, header=False)
+data_df.to_csv('timestamp_mean_std_curtosis_labels.csv',
+               index=False, header=False)

@@ -1,7 +1,7 @@
 import numpy as np
 
 # Read the merged data file
-with open('timestamp_mean_labels.csv', 'r') as file:
+with open('combined_data_files/timestamp_mean_std_curtosis_labels.csv', 'r') as file:
     lines = file.readlines()
 
 # Initialize a list to store data columns by timestamps
