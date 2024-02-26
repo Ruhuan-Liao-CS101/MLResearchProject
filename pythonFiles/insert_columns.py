@@ -2,7 +2,7 @@ import pandas as pd
 
 # Read the first CSV file into a DataFrame
 df1 = pd.read_csv(
-    'combined_data_files/mean_withLabels.csv', header=None)
+    'combined_mean_withFileID.csv', header=None)
 
 # Read the second CSV file into a DataFrame
 df2 = pd.read_csv('combined_data_files/std_kurtosis.csv', header=None)
