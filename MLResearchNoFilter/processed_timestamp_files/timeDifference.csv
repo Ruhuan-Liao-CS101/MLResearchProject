@@ -1,0 +1,19 @@
+Time difference between last entry of timestamp file and 0th position timestamps
+file, time_difference
+001, 0:00:40, 40 seconds
+002, 0:05:23, 323 seconds
+003, 0:05:22, 322 seconds
+004, 0:04:03, 243 seconds
+005, 1:06:10, 3970 seconds
+006, 0:07:35, 455 seconds
+007, 0:01:34, 94 seconds
+008, 0:31:49, 1909 seconds
+010, 0:03:01, 181 seconds
+011, 0:02:33, 153 seconds
+012, 0:01:35, 95 seconds
+013, 0:01:26, 86 seconds
+014, 0:01:28, 88 seconds
+015, 0:01:29, 89 seconds
+016, 0:06:41, 401 seconds
+017, 0:01:29, 89 seconds
+018, 0:02:30, 150 seconds
